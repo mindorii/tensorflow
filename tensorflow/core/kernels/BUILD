@@ -1459,7 +1459,7 @@ cc_library(
     ],
     copts = tf_copts(),
     visibility = ["//visibility:public"],
-#    alwayslink = 1,
+    alwayslink = 1,
     linkstatic = 1,
 )
 

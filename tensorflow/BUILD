@@ -31,7 +31,15 @@ config_setting(
 
 config_setting(
     name = "darwin",
-    values = {"cpu": "darwin"},
+    values = {"cpu": "darwin_x86_64"},
+    visibility = ["//visibility:public"],
+)
+
+config_setting(
+    name = "ios_arm64",
+    values = {
+        "ios_cpu": "arm64",
+    },
     visibility = ["//visibility:public"],
 )
 
@@ -132,10 +140,13 @@ filegroup(
 # -------------------------------------------
 # New rules should be added above this target.
 # -------------------------------------------
+load("//tensorflow:tensorflow.bzl", "tf_copts")
+
 cc_binary(
     name = "libspeechlite.so",
     linkshared = 1,
     linkstatic = 1,
+    copts = tf_copts(),
     deps = [
         "//tensorflow/core:speech_lite",
     ],

@@ -27,7 +27,7 @@ def tf_deps(deps, suffix):
 
 def tf_proto_library_cc(name, srcs = [], has_services = None,
                         deps = [], visibility = [], testonly = 0,
-                        cc_libs = [],
+                        cc_libs = [], copts = [],
                         cc_stubby_versions = None,
                         cc_grpc_version = None,
                         cc_api_version = 2, go_api_version = 2,
@@ -46,7 +46,10 @@ def tf_proto_library_cc(name, srcs = [], has_services = None,
                    cc_libs = cc_libs + ["//google/protobuf:protobuf"],
                    use_grpc_plugin = use_grpc_plugin,
                    testonly=testonly,
-                   visibility=visibility,)
+                   copts=copts,
+                   visibility=visibility,
+                   protoc="//google/protobuf:protoc",
+                   default_runtime="//google/protobuf:protobuf")
 
 def tf_proto_library_py(name, srcs=[], deps=[], visibility=[], testonly=0,
                         srcs_version="PY2AND3"):
@@ -59,7 +62,7 @@ def tf_proto_library_py(name, srcs=[], deps=[], visibility=[], testonly=0,
 
 def tf_proto_library(name, srcs = [], has_services = None,
                      deps = [], visibility = [], testonly = 0,
-                     cc_libs = [],
+                     cc_libs = [], copts = [],
                      cc_api_version = 2, go_api_version = 2,
                      java_api_version = 2,
                      py_api_version = 2):
@@ -67,6 +70,7 @@ def tf_proto_library(name, srcs = [], has_services = None,
                       srcs=srcs + tf_deps(deps, "_proto_srcs"),
                       deps=deps,
                       cc_libs=cc_libs,
+                      copts=copts,
                       testonly=testonly,
                       visibility=visibility,)
 

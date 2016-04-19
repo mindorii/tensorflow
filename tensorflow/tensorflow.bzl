@@ -94,6 +94,15 @@ def tf_copts():
                     "-DTF_LEAN_BINARY",
                     "-O2",
                   ],
+                  "//tensorflow:ios_arm64": [
+                    "-DOS_IOS",
+                    "-miphoneos-version-min=9.3",
+                    "-arch arm64",
+                    "-D__thread=",
+                    "-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/",
+                    "-DPLATFORM_POSIX_IOS=1",
+                    "-femit-all-decls",
+                  ],
                   "//tensorflow:darwin": [],
                   "//conditions:default": ["-pthread"]}))
 
