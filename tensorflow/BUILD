@@ -133,6 +133,15 @@ filegroup(
 # New rules should be added above this target.
 # -------------------------------------------
 cc_binary(
+    name = "libspeechlite.so",
+    linkshared = 1,
+    linkstatic = 1,
+    deps = [
+        "//tensorflow/core:speech_lite",
+    ],
+)
+
+cc_binary(
     name = "libtensorflow.so",
     linkshared = 1,
     deps = [

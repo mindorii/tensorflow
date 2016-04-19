@@ -71,6 +71,40 @@ load(
 # -----------------------------------------------------------------------------
 # Public targets
 
+cc_library(
+    name = "speech_ops",
+    srcs = [
+        "ops/array_ops.cc",
+        "ops/control_flow_ops.cc",
+        "ops/data_flow_ops.cc",
+        "ops/logging_ops.cc",
+        "ops/math_ops.cc",
+        "ops/nn_ops.cc",
+    ],
+    copts = tf_copts(),
+    visibility = ["//visibility:public"],
+    deps=["//tensorflow/core:framework"],
+#    alwayslink=1,
+    linkstatic=1,
+)
+
+cc_library(
+    copts = tf_copts(),
+    name = "speech_lite",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//tensorflow/core/kernels:speech_tensorflow_kernels",
+        ":direct_session",
+        ":lib",
+    ],
+    tags = [
+        "manual",
+        "notap",
+    ],
+    alwayslink = 1,
+    linkstatic = 1,
+)
+
 tf_proto_library(
     name = "protos_all",
     srcs = glob(

@@ -16,8 +16,10 @@ limitations under the License.
 #include "tensorflow/core/kernels/cwise_ops_common.h"
 
 namespace tensorflow {
-REGISTER10(BinaryOp, CPU, "Equal", functor::equal_to, Eigen::half, float,
-           double, uint8, int8, int16, int32, int64, complex64, string);
+//REGISTER10(BinaryOp, CPU, "Equal", functor::equal_to, Eigen::half, float,
+//           double, uint8, int8, int16, int32, int64, complex64, string);
+REGISTER(BinaryOp, CPU, "Equal", functor::equal_to, int32);
+
 #if GOOGLE_CUDA
 REGISTER7(BinaryOp, GPU, "Equal", functor::equal_to, Eigen::half, float, double,
           uint8, int8, int16, int64);

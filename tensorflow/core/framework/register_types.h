@@ -49,8 +49,9 @@ limitations under the License.
 #define TF_CALL_INTEGRAL_TYPES(m) m(int64) m(int32) m(uint8) m(int16) m(int8)
 
 #define TF_CALL_REAL_NUMBER_TYPES(m) \
-  TF_CALL_INTEGRAL_TYPES(m)          \
-  m(Eigen::half) m(float) m(double)
+    m(float) m(int32)
+//  TF_CALL_INTEGRAL_TYPES(m)
+//  m(Eigen::half) m(float) m(double)
 
 #define TF_CALL_REAL_NUMBER_TYPES_NO_INT32(m) \
   m(Eigen::half) m(float) m(double) m(int64) m(uint8) m(int16) m(int8)
@@ -70,8 +71,9 @@ limitations under the License.
 
 // Call "m" on all types.
 #define TF_CALL_ALL_TYPES(m) \
-  TF_CALL_POD_TYPES(m)       \
-  m(string)
+    TF_CALL_REAL_NUMBER_TYPES(m)
+//  TF_CALL_POD_TYPES(m)
+//  m(string)
 
 // Call "m" on all types supported on GPU.
 #define TF_CALL_GPU_NUMBER_TYPES(m) m(Eigen::half) m(float) m(double)
