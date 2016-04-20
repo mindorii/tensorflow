@@ -72,7 +72,9 @@ load(
 # Public targets
 
 cc_library(
-    name = "speech_ops",
+    copts = tf_copts(),
+    name = "speech_lite",
+    visibility = ["//visibility:public"],
     srcs = [
         "ops/array_ops.cc",
         "ops/control_flow_ops.cc",
@@ -81,19 +83,9 @@ cc_library(
         "ops/math_ops.cc",
         "ops/nn_ops.cc",
     ],
-    copts = tf_copts(),
-    visibility = ["//visibility:public"],
-    deps=["//tensorflow/core:framework"],
-    alwayslink=1,
-    linkstatic=1,
-)
-
-cc_library(
-    copts = tf_copts(),
-    name = "speech_lite",
-    visibility = ["//visibility:public"],
     deps = [
         "//tensorflow/core/kernels:speech_tensorflow_kernels",
+        ":framework",
         ":direct_session",
         ":lib",
     ],
@@ -101,7 +93,6 @@ cc_library(
         "manual",
         "notap",
     ],
-    alwayslink = 1,
     linkstatic = 1,
 )
 
@@ -350,7 +341,6 @@ cc_library(
     linkstatic = 1,
     visibility = ["//visibility:public"],
     deps = [":framework"],
-    alwayslink = 1,
 )
 
 cc_library(
@@ -382,7 +372,6 @@ cc_library(
         ":user_ops_op_lib",
         "//tensorflow/models/embedding:word2vec_ops",
     ],
-    alwayslink = 1,
 )
 
 cc_library(
@@ -395,7 +384,6 @@ cc_library(
         ":framework",
         ":lib",
     ],
-    alwayslink = 1,
 )
 
 cc_library(
@@ -408,7 +396,6 @@ cc_library(
         ":functional_ops_op_lib",
         ":lib",
     ],
-    alwayslink = 1,
 )
 
 cc_library(
@@ -424,7 +411,6 @@ cc_library(
         ":lib",
         ":math_ops_op_lib",
     ],
-    alwayslink = 1,
 )
 
 cc_library(
@@ -437,7 +423,6 @@ cc_library(
         ":lib",
         ":nn_ops_op_lib",
     ],
-    alwayslink = 1,
 )
 
 tf_cuda_library(
@@ -684,7 +669,6 @@ cc_library(
         ":protos_cc",
         "//third_party/eigen3",
     ],
-    alwayslink = 1,
 )
 
 # Full Tensorflow library with operator support. Use this unless reducing
@@ -710,7 +694,6 @@ cc_library(
         "//tensorflow/core/kernels:android_tensorflow_kernels",
         "//third_party/eigen3",
     ],
-    alwayslink = 1,
 )
 
 filegroup(
@@ -850,7 +833,6 @@ tf_cuda_library(
         "//tensorflow/core/kernels:bounds_check",
         "//third_party/eigen3",
     ],
-    alwayslink = 1,
 )
 
 cc_header_only_library(
@@ -997,7 +979,6 @@ tf_cuda_library(
         "//tensorflow/core/kernels:required",
         "//third_party/eigen3",
     ],
-    alwayslink = 1,
 )
 
 tf_cuda_library(
@@ -1014,7 +995,6 @@ tf_cuda_library(
         ":lib_internal",
         ":protos_all_cc",
     ],
-    alwayslink = 1,
 )
 
 tf_cuda_library(
@@ -1094,7 +1074,6 @@ tf_cuda_library(
         ":stream_executor",
         "//third_party/eigen3",
     ],
-    alwayslink = 1,
 )
 
 # -----------------------------------------------------------------------------

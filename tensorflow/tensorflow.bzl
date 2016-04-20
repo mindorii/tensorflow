@@ -118,7 +118,7 @@ def tf_gen_op_libs(op_lib_names):
                       srcs=["ops/" + n + ".cc"],
                       deps=(["//tensorflow/core:framework"]),
                       visibility=["//visibility:public"],
-                      alwayslink=1,
+                      alwayslink=0,
                       linkstatic=1,)
 
 
@@ -182,7 +182,7 @@ def tf_gen_op_wrappers_cc(name,
                     hdrs=subhdrs,
                     deps=["//tensorflow/core:core_cpu"],
                     copts=tf_copts(),
-                    alwayslink=1,)
+                    alwayslink=0,)
 
 
 # Invoke this rule in .../tensorflow/python to build the wrapper library.
@@ -282,7 +282,7 @@ def tf_gpu_kernel_library(srcs, copts=[], cuda_copts=[], deps=[], hdrs=[],
           "//tensorflow/core:cuda",
           "//tensorflow/core:gpu_lib",
       ]),
-      alwayslink=1,
+      alwayslink=0,
       **kwargs)
 
 def tf_cuda_library(deps=None, cuda_deps=None, copts=None, **kwargs):
@@ -315,7 +315,7 @@ def tf_cuda_library(deps=None, cuda_deps=None, copts=None, **kwargs):
 
 
 def tf_kernel_library(name, prefix=None, srcs=None, gpu_srcs=None, hdrs=None,
-                      deps=None, alwayslink=1, **kwargs):
+                      deps=None, alwayslink=0, **kwargs):
   """A rule to build a TensorFlow OpKernel.
 
   May either specify srcs/hdrs or prefix.  Similar to tf_cuda_library,

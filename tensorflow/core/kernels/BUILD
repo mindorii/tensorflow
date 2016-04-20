@@ -50,7 +50,6 @@ tf_kernel_library(
         "//tensorflow/core:framework",
         "//third_party/eigen3",
     ],
-    alwayslink = 0,
 )
 
 cc_library(
@@ -191,7 +190,6 @@ tf_kernel_library(
         "//tensorflow/core:framework",
         "//third_party/eigen3",
     ],
-    alwayslink = 0,
 )
 
 cc_library(
@@ -473,7 +471,6 @@ tf_kernel_library(
         "//tensorflow/core:framework",
         "//third_party/eigen3",
     ],
-    alwayslink = 0,
 )
 
 tf_kernel_library(
@@ -1199,7 +1196,6 @@ tf_kernel_library(
         "//tensorflow/core:lib",
         "//third_party/eigen3",
     ],
-    alwayslink = 0,
 )
 
 tf_kernel_libraries(
@@ -1450,7 +1446,6 @@ cc_library(
         "transpose_functor.h",
     ],
     deps = [
-        "//tensorflow/core:speech_ops",
         "//tensorflow/core:core_cpu",
     ],
     tags = [
@@ -1459,7 +1454,6 @@ cc_library(
     ],
     copts = tf_copts(),
     visibility = ["//visibility:public"],
-    alwayslink = 1,
     linkstatic = 1,
 )
 
@@ -1681,7 +1675,6 @@ cc_library(
         "//tensorflow/core:protos_cc",
         "//third_party/eigen3",
     ],
-    alwayslink = 1,
 )
 
 # -----------------------------------------------------------------------------
