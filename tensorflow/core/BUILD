@@ -111,6 +111,7 @@ tf_proto_library(
     go_api_version = 2,
     java_api_version = 2,
     py_api_version = 2,
+    copts = tf_copts(),
     visibility = ["//visibility:public"],
 )
 
@@ -389,6 +390,7 @@ cc_library(
 cc_library(
     name = "functional_grad",
     srcs = ["ops/functional_grad.cc"],
+    copts = tf_copts(),
     linkstatic = 1,  # Needed since alwayslink is broken in bazel b/27630669
     visibility = ["//visibility:public"],
     deps = [
