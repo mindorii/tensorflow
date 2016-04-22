@@ -79,15 +79,16 @@ cc_library(
         "ops/array_ops.cc",
         "ops/control_flow_ops.cc",
         "ops/data_flow_ops.cc",
+        "ops/functional_ops.cc",
+        "ops/function_ops.cc",
         "ops/logging_ops.cc",
         "ops/math_ops.cc",
         "ops/nn_ops.cc",
+        "ops/no_op.cc",
+        "ops/sendrecv_ops.cc",
     ],
     deps = [
         "//tensorflow/core/kernels:speech_tensorflow_kernels",
-        ":framework",
-        ":direct_session",
-        ":lib",
     ],
     tags = [
         "manual",
@@ -579,7 +580,6 @@ filegroup(
     name = "android_srcs",
     srcs = [
         "//tensorflow/core/kernels:android_srcs",
-        "//tensorflow/core/util/ctc:android_srcs",
         "common_runtime/gpu/gpu_tracer.cc",
     ] + glob(
         [
@@ -654,13 +654,11 @@ ANDROID_TF_LITE_HDRS = [
 # --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
 cc_library(
     name = "android_tensorflow_lib_lite",
-    srcs =
-        select({
-            "//tensorflow:android": ["//tensorflow/core:android_srcs"],
-            "//conditions:default": [],
-        }),
+    srcs = [
+        "//tensorflow/core:android_srcs",
+    ],
     hdrs = ANDROID_TF_LITE_HDRS,
-    copts = tf_copts() + ["-Os"],
+    copts = tf_copts(),
     tags = [
         "manual",
         "notap",
