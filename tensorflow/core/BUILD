@@ -912,6 +912,8 @@ filegroup(
         "platform/thread_annotations.h",
         "platform/types.h",
         "public/version.h",
+        "public/session.h",
+        "public/session_options.h",
         "util/device_name_utils.h",
     ],
 )
