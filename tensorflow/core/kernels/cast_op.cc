@@ -69,16 +69,8 @@ struct CastFunctor<CPUDevice, O, I> {
   FN(arg0, double)
 
 #define CURRY_TYPES3(FN, arg0, arg1) \
-  FN(arg0, arg1, bool);              \
-  FN(arg0, arg1, uint8);             \
-  FN(arg0, arg1, int8);              \
-  FN(arg0, arg1, uint16);            \
-  FN(arg0, arg1, int16);             \
   FN(arg0, arg1, int32);             \
-  FN(arg0, arg1, int64);             \
-  FN(arg0, arg1, Eigen::half);       \
-  FN(arg0, arg1, float);             \
-  FN(arg0, arg1, double)
+  FN(arg0, arg1, float);
 
 #define CAST_CASE(DEVICE, IN, OUT)                                         \
   if (DataTypeToEnum<IN>::value == src_dtype_ &&                           \
@@ -135,16 +127,16 @@ class CpuCastOp : public CastOpBase {
       work_ = nullptr;  // Identity
       return Status::OK();
     }
-    CURRY_TYPES3(CAST_CASE, CPUDevice, bool);
-    CURRY_TYPES3(CAST_CASE, CPUDevice, uint8);
-    CURRY_TYPES3(CAST_CASE, CPUDevice, int8);
-    CURRY_TYPES3(CAST_CASE, CPUDevice, uint16);
-    CURRY_TYPES3(CAST_CASE, CPUDevice, int16);
+//    CURRY_TYPES3(CAST_CASE, CPUDevice, bool);
+//    CURRY_TYPES3(CAST_CASE, CPUDevice, uint8);
+//    CURRY_TYPES3(CAST_CASE, CPUDevice, int8);
+//    CURRY_TYPES3(CAST_CASE, CPUDevice, uint16);
+//    CURRY_TYPES3(CAST_CASE, CPUDevice, int16);
     CURRY_TYPES3(CAST_CASE, CPUDevice, int32);
-    CURRY_TYPES3(CAST_CASE, CPUDevice, int64);
-    CURRY_TYPES3(CAST_CASE, CPUDevice, Eigen::half);
+//    CURRY_TYPES3(CAST_CASE, CPUDevice, int64);
+//    CURRY_TYPES3(CAST_CASE, CPUDevice, Eigen::half);
     CURRY_TYPES3(CAST_CASE, CPUDevice, float);
-    CURRY_TYPES3(CAST_CASE, CPUDevice, double);
+//    CURRY_TYPES3(CAST_CASE, CPUDevice, double);
 
     if (src_dtype_ == DT_BFLOAT16 && dst_dtype_ == DT_FLOAT) {
       work_ = [](OpKernelContext* ctx, const Tensor& inp, Tensor* out) {

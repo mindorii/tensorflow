@@ -217,9 +217,9 @@ struct MatMulFunctor<CPUDevice, T> {
       MatMulOp<GPUDevice, T, false /* cublas */>)
 
 REGISTER_CPU(float);
-REGISTER_CPU(double);
-REGISTER_CPU(int32);
-REGISTER_CPU(complex64);
+//REGISTER_CPU(double);
+//REGISTER_CPU(int32);
+//REGISTER_CPU(complex64);
 #if GOOGLE_CUDA
 REGISTER_GPU(float);
 // REGISTER_GPU(double);
